@@ -23,6 +23,7 @@ DISTFILES += qml/Kraken.qml \
     qml/pages/FirstPage.qml \
     qml/pages/Home.qml \
     qml/pages/SecondPage.qml \
+    qml/views/PairLabel.qml \
     rpm/Kraken.changes.in \
     rpm/Kraken.changes.run.in \
     rpm/Kraken.spec \

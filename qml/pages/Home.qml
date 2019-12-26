@@ -1,7 +1,7 @@
 import QtQuick 2.4
 import Sailfish.Silica 1.0
 import "../common"
-import "../models"
+import "../views"
 
 Page {
     id: page
@@ -36,18 +36,18 @@ Page {
             model: assetPrairs
             anchors.fill: parent
             header: PageHeader {
-                title: qsTr("Kraken (" + settings.currency + ") - (" + assetPrairs.length + ")")
+                title: qsTr("Kraken (" + settings.currency + ")")
             }
             delegate: BackgroundItem {
                 id: delegate
 
-                Label {
+                PairLabel {
                     x: Theme.horizontalPageMargin
-                    text: qsTr(assetPrairs[index].name)
+                    pair: assetPrairs[index]
                     anchors.verticalCenter: parent.verticalCenter
                     color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
                 }
-                onClicked: console.log("Clicked " + index)
+                onClicked: console.log("Clicked " + assetPrairs[index].key)
             }
             VerticalScrollDecorator {}
         }
@@ -75,8 +75,8 @@ Page {
         var results = []
         for(var assetPrairKey in assetPrairsResult) {
             var assetPrair = assetPrairsResult[assetPrairKey]
-            if(assetPrair.quote.indexOf(settings.currency) !== -1) {
-                results.push({name: assetPrair.altname, quote: assetPrair.quote})
+            if(assetPrair.quote.indexOf(settings.currency) !== -1 && assetPrair.wsname) {
+                results.push({key: assetPrairKey, name: assetPrair.wsname, quote: assetPrair.quote})
             }
         }
 
