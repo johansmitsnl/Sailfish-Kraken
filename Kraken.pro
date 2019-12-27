@@ -20,9 +20,8 @@ HEADERS +=
 
 DISTFILES += qml/Kraken.qml \
     qml/cover/CoverPage.qml \
-    qml/pages/FirstPage.qml \
     qml/pages/Home.qml \
-    qml/pages/SecondPage.qml \
+    qml/pages/PairDetails.qml \
     qml/views/PairLabel.qml \
     rpm/Kraken.changes.in \
     rpm/Kraken.changes.run.in \

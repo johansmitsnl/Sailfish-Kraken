@@ -9,21 +9,6 @@
     </message>
 </context>
 <context>
-    <name>FirstPage</name>
-    <message>
-        <source>Show Page 2</source>
-        <translation>Zur Seite 2</translation>
-    </message>
-    <message>
-        <source>UI Template</source>
-        <translation>UI-Vorlage</translation>
-    </message>
-    <message>
-        <source>Hello Sailors</source>
-        <translation>Hallo Matrosen</translation>
-    </message>
-</context>
-<context>
     <name>Home</name>
     <message>
         <source>Select USD</source>
@@ -39,14 +24,10 @@
     </message>
 </context>
 <context>
-    <name>SecondPage</name>
-    <message>
-        <source>Nested Page</source>
-        <translation>Unterseite</translation>
-    </message>
+    <name>PairDetails</name>
     <message>
         <source>Item</source>
-        <translation>Element</translation>
+        <translation type="unfinished">Element</translation>
     </message>
 </context>
 </TS>

@@ -46,7 +46,7 @@ Page {
                     pair: assetPrairs[index]
                     anchors.verticalCenter: parent.verticalCenter
                 }
-                onClicked: console.log("Clicked " + assetPrairs[index].key)
+                onClicked: pageStack.push(Qt.resolvedUrl("PairDetails.qml"), {pair: assetPrairs[index]}) //console.log("Clicked " + assetPrairs[index].key)
             }
             VerticalScrollDecorator {}
         }
