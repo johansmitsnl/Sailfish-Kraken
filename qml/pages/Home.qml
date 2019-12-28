@@ -108,7 +108,9 @@ Page {
                                      low: 0,
                                      high: 0,
                                      ask: 0,
-                                     bid: 0
+                                     bid: 0,
+                                     current: 0,
+                                     last24: 0
                                  }
                              })
                 pairQuery.push(assetPrairKey)
@@ -126,6 +128,8 @@ Page {
                 results[idx].ticker.high = parseFloat(tickerData[results[idx].key].h[0])
                 results[idx].ticker.ask = parseFloat(tickerData[results[idx].key].a[0])
                 results[idx].ticker.bid = parseFloat(tickerData[results[idx].key].b[0])
+                results[idx].ticker.current = parseFloat(tickerData[results[idx].key].c[0])
+                results[idx].ticker.low24 = parseFloat(tickerData[results[idx].key].l[1])
             }
 
             // Save the results in the state

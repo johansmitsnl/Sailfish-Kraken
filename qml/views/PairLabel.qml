@@ -59,7 +59,7 @@ Item {
     }
 
     function currentPrice() {
-        return ((ticker().ask + ticker().bid) / 2)
+        return ticker().current
     }
 
     function priceChange() {
@@ -67,13 +67,13 @@ Item {
     }
 
     function percentageNow() {
-        return (priceChange() / ticker().opening * 100).toFixed(2)
+        return ((currentPrice() - ticker().low24) / ticker().low24 * 100).toFixed(2)
     }
 
     function formatPrice(input) {
 
         const length = Math.round(input).toString().length
-        const fixedPrecision = (5 - length)
+        const fixedPrecision = (6 - length)
         if(fixedPrecision < 0) {
             fixedPrecision = 0
         }
