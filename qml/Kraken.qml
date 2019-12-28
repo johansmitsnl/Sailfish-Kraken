@@ -6,5 +6,5 @@ ApplicationWindow
 {
     initialPage: Component { Home { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
-    allowedOrientations: defaultAllowedOrientations
+    allowedOrientations: Orientation.Portrait
 }
