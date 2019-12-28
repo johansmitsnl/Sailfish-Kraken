@@ -8,4 +8,5 @@ ConfigurationGroup {
     synchronous: true
 
     property string currency: "USD"
+    property var homeTab: 0
 }
