@@ -21,6 +21,7 @@ HEADERS +=
 DISTFILES += qml/Kraken.qml \
     qml/cover/CoverPage.qml \
     qml/pages/Home.qml \
+    qml/pages/Market.qml \
     qml/pages/PairDetails.qml \
     qml/views/PairLabel.qml \
     rpm/Kraken.changes.in \
