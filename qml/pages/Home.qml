@@ -57,12 +57,9 @@ Page {
                     pair: assetPrairs[index]
                 }
 
-                Rectangle {
+                Separator {
                     y: pairLabel.height
                     width: parent.width
-                    height: (1 * Theme.pixelRatio)
-                    color: "grey"
-                    opacity: 25
                 }
 
                 onClicked: pageStack.push(Qt.resolvedUrl("PairDetails.qml"), {pair: assetPrairs[index]}) //console.log("Clicked " + assetPrairs[index].key)
