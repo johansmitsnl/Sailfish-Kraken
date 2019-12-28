@@ -6,52 +6,68 @@ Item {
     property var pair: ({name: "unkown", key: "unknown", ticker: {opening: 0, low: 0, high: 0, ask: 0, bid: 0}})
 
     x: Theme.horizontalPageMargin
-    anchors.verticalCenter: parent.verticalCenter
 
-    Row {
+    Column {
 
-        spacing: Theme.horizontalPageMargin
+        Row {
+            spacing: Theme.horizontalPageMargin
 
-        Label {
-            text: percentageNow() + "%"
-            color: (percentageNow() > 0 ? "#00FF00" : "#FF0000")
-            width: 80 * Theme.pixelRatio
+            Label {
+                text: percentageNow() + "%"
+                color: (percentageNow() > 0 ? "#00FF00" : "#FF0000")
+                width: 100 * Theme.pixelRatio
+            }
+
+            Label {
+                text: qsTr(pair.name)
+                color: Theme.primaryColor
+                width: 100 * Theme.pixelRatio
+            }
+
+            Label {
+                text: formatPrice(currentPrice())
+                color: Theme.primaryColor
+            }
+
+            Label {
+                text: ("(" + (priceChange() > 0 ? "+" : "") + formatPrice(priceChange()) + ")")
+                color: (priceChange() > 0 ? "#00FF00" : "#FF0000")
+                width: 100 * Theme.pixelRatio
+            }
+
         }
 
-        Label {
-            text: ((priceChange() > 0 ? "+" : "") + formatPrice(priceChange()))
-            color: (priceChange() > 0 ? "#00FF00" : "#FF0000")
-            width: 100 * Theme.pixelRatio
-        }
+        Row {
+            spacing: Theme.horizontalPageMargin
 
-        Label {
-            text: qsTr(pair.name)
-            color: Theme.primaryColor
-            width: 80 * Theme.pixelRatio
-        }
+            Label {
+                text: "Day low: " + formatPrice(pair.ticker.low)
+                color: Theme.primaryColor
+                width: 200 * Theme.pixelRatio
+            }
 
-        Label {
-            text: formatPrice(pair.ticker.low)
-            color: Theme.primaryColor
-            width: 100 * Theme.pixelRatio
+            Label {
+                text: "Day high: " + formatPrice(pair.ticker.high)
+                color: Theme.primaryColor
+                width: 200 * Theme.pixelRatio
+            }
         }
+    }
 
-        Label {
-            text: formatPrice(pair.ticker.high)
-            color: Theme.primaryColor
-            width: 100 * Theme.pixelRatio
-        }
+    function ticker() {
+        return pair.ticker
+    }
 
+    function currentPrice() {
+        return ((ticker().ask + ticker().bid) / 2)
     }
 
     function priceChange() {
-        const ticker = pair.ticker
-        return (((ticker.ask + ticker.bid) / 2) - ticker.opening)
+        return (currentPrice() - ticker().opening)
     }
 
     function percentageNow() {
-        const ticker = pair.ticker
-        return (priceChange() / ticker.opening * 100).toFixed(2)
+        return (priceChange() / ticker().opening * 100).toFixed(2)
     }
 
     function formatPrice(input) {
