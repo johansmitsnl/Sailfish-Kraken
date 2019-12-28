@@ -11,14 +11,6 @@
 <context>
     <name>Home</name>
     <message>
-        <source>Select USD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select EUR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Refresh now</source>
         <translation type="unfinished"></translation>
     </message>

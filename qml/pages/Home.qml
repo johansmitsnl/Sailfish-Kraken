@@ -19,14 +19,6 @@ Page {
         // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
         PullDownMenu {
             MenuItem {
-                text: qsTr("Select USD")
-                onClicked: setCurrency("USD")
-            }
-            MenuItem {
-                text: qsTr("Select EUR")
-                onClicked: setCurrency("EUR")
-            }
-            MenuItem {
                 text: qsTr("Refresh now")
                 onClicked: refreshData()
             }
@@ -39,13 +31,29 @@ Page {
             running: loading && assetPrairs.length === 0
         }
 
+
         SilicaListView {
             id: listView
             model: assetPrairs
             anchors.fill: parent
             visible: assetPrairs.length !== 0
-            header: PageHeader {
-                title: qsTr("Kraken (" + settings.currency + ")")
+            header: ComboBox {
+                width: parent.width
+                label: "Currenty"
+                property var menuOptions: ["EUR", "USD"]
+
+                currentIndex: menuOptions.indexOf(settings.currency)
+
+                menu: ContextMenu {
+                    MenuItem {
+                        text: "EUR"
+                        onClicked: setCurrency("EUR")
+                    }
+                    MenuItem {
+                        text: "USD"
+                        onClicked: setCurrency("USD")
+                    }
+                }
             }
 
             delegate: BackgroundItem {
