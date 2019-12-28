@@ -1,4 +1,4 @@
-import QtQuick 2.4
+import QtQuick 2.6
 import Nemo.Configuration 1.0
 
 ConfigurationGroup {

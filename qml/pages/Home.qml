@@ -1,4 +1,4 @@
-import QtQuick 2.4
+import QtQuick 2.6
 import Sailfish.Silica 1.0
 import "../common"
 import "../views"
