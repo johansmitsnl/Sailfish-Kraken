@@ -32,18 +32,20 @@ Page {
             }
         }
 
+
+        BusyIndicator {
+            size: BusyIndicatorSize.Large
+            anchors.centerIn: parent
+            running: loading && assetPrairs.length === 0
+        }
+
         SilicaListView {
             id: listView
             model: assetPrairs
             anchors.fill: parent
+            visible: assetPrairs.length !== 0
             header: PageHeader {
                 title: qsTr("Kraken (" + settings.currency + ")")
-
-                ProgressBar {
-                    indeterminate: true
-                    visible: loading
-                    width: parent.width
-                }
             }
 
             delegate: BackgroundItem {
