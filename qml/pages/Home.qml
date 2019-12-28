@@ -7,6 +7,7 @@ Page {
     id: page
 
     property var assetPrairs: []
+    property var loading: false
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
@@ -37,7 +38,14 @@ Page {
             anchors.fill: parent
             header: PageHeader {
                 title: qsTr("Kraken (" + settings.currency + ")")
+
+                ProgressBar {
+                    indeterminate: true
+                    visible: loading
+                    width: parent.width
+                }
             }
+
             delegate: BackgroundItem {
                 id: delegate
                 implicitHeight: pairLabel.height + (100 * Theme.pixelRatio)
@@ -64,9 +72,9 @@ Page {
     }
 
     function getData(url, callbackFunction) {
-            var xmlhttp = new XMLHttpRequest();
+        var xmlhttp = new XMLHttpRequest();
 
-            var callBackEnabled = callbackFunction ? true : false
+        var callBackEnabled = callbackFunction ? true : false
 
         if(callBackEnabled) {
             xmlhttp.onreadystatechange=function() {
@@ -89,6 +97,7 @@ Page {
 
     function refreshData() {
         console.debug("Reload the data from the API")
+        loading = true
         getData("https://api.kraken.com/0/public/AssetPairs", refreshResult)
     }
 
@@ -137,6 +146,8 @@ Page {
         } else {
             // Fixme Add loader error!
         }
+
+        loading = false
     }
 
     function setCurrency(cur) {
