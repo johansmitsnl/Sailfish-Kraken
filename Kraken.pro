@@ -22,7 +22,7 @@ DISTFILES += qml/Kraken.qml \
     qml/common/Functions.qml \
     qml/cover/CoverPage.qml \
     qml/pages/Home.qml \
-    qml/pages/Market.qml \
+    qml/views/Market.qml \
     qml/pages/PairDetails.qml \
     qml/views/OrderbookRow.qml \
     qml/views/PairLabel.qml \
