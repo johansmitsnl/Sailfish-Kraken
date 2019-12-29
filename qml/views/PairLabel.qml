@@ -40,16 +40,20 @@ Item {
         Row {
             spacing: Theme.horizontalPageMargin
 
-            Label {
-                text: "Day low: " + formatPrice(pair.ticker.low)
+            Text {
+                text: qsTr("ticker-day-high") + ": " + formatPrice(pair.ticker.high)
                 color: Theme.primaryColor
-                width: 200 * Theme.pixelRatio
+                font.pixelSize: Theme.fontSizeExtraSmall
             }
+        }
 
-            Label {
-                text: "Day high: " + formatPrice(pair.ticker.high)
+        Row {
+            spacing: Theme.horizontalPageMargin
+
+            Text {
+                text: qsTr("ticker-day-low") + ": " + formatPrice(pair.ticker.low)
                 color: Theme.primaryColor
-                width: 200 * Theme.pixelRatio
+                font.pixelSize: Theme.fontSizeExtraSmall
             }
         }
     }
@@ -78,6 +82,19 @@ Item {
             fixedPrecision = 0
         }
 
-        return input.toFixed(fixedPrecision)
+        return currencySymbol() + input.toFixed(fixedPrecision)
+    }
+
+    function currencySymbol() {
+        var result = ""
+        switch(settings.currency) {
+        case 'EUR':
+            result = "€"
+            break;
+        case 'USD':
+            result = "$"
+            break;
+        }
+        return result
     }
 }

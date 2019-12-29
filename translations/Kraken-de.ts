@@ -33,4 +33,15 @@
         <translation type="unfinished">Element</translation>
     </message>
 </context>
+<context>
+    <name>PairLabel</name>
+    <message>
+        <source>ticker-day-high</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ticker-day-low</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

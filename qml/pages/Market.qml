@@ -29,7 +29,7 @@ SilicaListView {
 
     delegate: BackgroundItem {
         id: delegate
-        implicitHeight: pairLabel.height + (100 * Theme.pixelRatio)
+        implicitHeight: pairLabel.height + (120 * Theme.pixelRatio)
 
         PairLabel {
             y: (5 * Theme.pixelRatio)
