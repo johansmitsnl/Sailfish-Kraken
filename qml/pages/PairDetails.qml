@@ -1,31 +1,132 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
+import "../common"
+import "../views"
 
 Page {
     id: page
 
-    property var pair: ({})
+    property var pair: ({
 
-    // The effective value will be restricted by ApplicationWindow.allowedOrientations
+                        })
+    property var orderBookAsks: []
+    property var orderBookBids: []
+
     allowedOrientations: Orientation.All
 
-    SilicaListView {
-        id: listView
-        model: 20
+    SilicaFlickable {
         anchors.fill: parent
-        header: PageHeader {
-            title: pair.name
-        }
-        delegate: BackgroundItem {
-            id: delegate
+        contentHeight: sellColumnView.height + mainColumn.height
 
-            Label {
-                x: Theme.horizontalPageMargin
-                text: qsTr("Item") + " " + index
-                anchors.verticalCenter: parent.verticalCenter
-                color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
+        // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Refresh now")
+                onClicked: refreshData()
             }
         }
-        VerticalScrollDecorator {}
+
+        Column {
+            id: mainColumn
+            width: parent.width
+
+            PageHeader {
+                title: pair.name + " (" + settings.currency + ")"
+            }
+
+            SectionHeader {
+                text: "Orderbook"
+            }
+        }
+
+        Column {
+            id: buyColumn
+            width: parent.width / 2
+            y: mainColumn.height
+
+            SectionHeader {
+                text: "Buy"
+            }
+            ColumnView {
+                id: buyColumnView
+                width: parent.width
+                itemHeight: Theme.itemSizeSmall
+
+                model: orderBookBids
+                delegate: BackgroundItem {
+                    width: parent.width
+                    OrderbookRow {
+                        row: orderBookBids[model.index]
+                    }
+                }
+            }
+        }
+
+        Column {
+            id: sellColumn
+            width: parent.width / 2
+            x: parent.width / 2
+            y: mainColumn.height
+
+            SectionHeader {
+                text: "Sell"
+            }
+
+            ColumnView {
+                id: sellColumnView
+                width: parent.width
+                itemHeight: Theme.itemSizeSmall
+
+                model: orderBookAsks
+                delegate: BackgroundItem {
+                    width: parent.width
+                    OrderbookRow {
+                        width: parent.width
+                        row: orderBookAsks[model.index]
+                    }
+                }
+            }
+        }
+    }
+
+    function refreshData() {
+        console.debug("Load orderbook")
+        var OrderbookData = JSON.parse(
+                    functions.getData(
+                        "https://api.kraken.com/0/public/Depth?pair=" + pair.key,
+                        false)).result
+        var resultAsks = []
+        var resultBids = []
+        var asks = OrderbookData[pair.key].asks
+        var bids = OrderbookData[pair.key].bids
+
+        for (var askIdx in asks) {
+            resultAsks.push({
+                                "price": parseFloat(asks[askIdx][0]),
+                                "volume": parseFloat(asks[askIdx][1])
+                            })
+        }
+
+        for (var bidIdx in bids) {
+            resultBids.push({
+                                "price": parseFloat(bids[bidIdx][0]),
+                                "volume": parseFloat(bids[bidIdx][1])
+                            })
+        }
+
+        orderBookAsks = resultAsks
+        orderBookBids = resultBids
+    }
+
+    Component.onCompleted: {
+        refreshData()
+    }
+
+    Settings {
+        id: settings
+    }
+
+    Functions {
+        id: functions
     }
 }

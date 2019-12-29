@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.9.1, 2019-12-28T19:05:52. -->
+<!-- Written by QtCreator 4.9.1, 2019-12-29T10:37:39. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -395,7 +395,7 @@
      <value type="int">14</value>
     </valuelist>
     <value type="QString" key="MerRunConfiguration.QmlLiveBenchWorkspace">/home/johan/sources/sailfish/kraken/Kraken</value>
-    <value type="bool" key="MerRunConfiguration.QmlLiveEnabled">false</value>
+    <value type="bool" key="MerRunConfiguration.QmlLiveEnabled">true</value>
     <value type="int" key="MerRunConfiguration.QmlLiveIpcPort">-1</value>
     <value type="int" key="MerRunConfiguration.QmlLiveOptions">3</value>
     <value type="QString" key="MerRunConfiguration.QmlLiveTargetWorkspace"></value>

@@ -24,7 +24,6 @@ Page {
             }
         }
 
-
         BusyIndicator {
             size: BusyIndicatorSize.Large
             anchors.centerIn: parent
@@ -34,29 +33,27 @@ Page {
         TabView {
             id: tabs
 
-                anchors.fill: parent
-                currentIndex: settings.homeTab
+            anchors.fill: parent
+            currentIndex: settings.homeTab
 
-                header: TabButtonRow {
-                    Repeater {
-                        model: [
-                            qsTrId("market"),
-                            qsTrId("balance"),
-                        ]
+            header: TabButtonRow {
+                Repeater {
+                    model: [qsTrId("market"), qsTrId("balance")]
 
-                        TabButton {
-                            onClicked: changeTab(model.index)
+                    TabButton {
+                        onClicked: changeTab(model.index)
 
-                            title: modelData
-                            tabIndex: model.index
-                        }
+                        title: modelData
+                        tabIndex: model.index
                     }
+                }
             }
 
             model: [marketView, balanceView]
             Component {
                 id: marketView
-                Market {}
+                Market {
+                }
             }
             Component {
                 id: balanceView
@@ -65,7 +62,6 @@ Page {
                 }
             }
         }
-
     }
 
     function changeTab(index) {
@@ -73,55 +69,33 @@ Page {
         tabs.moveTo(index)
     }
 
-    function getData(url, callbackFunction) {
-        var xmlhttp = new XMLHttpRequest();
-
-        var callBackEnabled = callbackFunction ? true : false
-
-        if(callBackEnabled) {
-            xmlhttp.onreadystatechange=function() {
-                if (callbackFunction && xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                    callbackFunction(xmlhttp.responseText)
-                }
-            }
-        }
-        xmlhttp.open("GET", url, (callbackFunction ? true : false));
-        xmlhttp.send();
-
-        if(!callBackEnabled) {
-            if (xmlhttp.status === 200) {
-              return(xmlhttp.responseText);
-            } else {
-                return false;
-            }
-        }
-    }
-
     function refreshData() {
         console.debug("Reload the data from the API")
         loading = true
-        getData("https://api.kraken.com/0/public/AssetPairs", refreshResult)
+        functions.getData("https://api.kraken.com/0/public/AssetPairs",
+                          refreshResult)
     }
 
     function refreshResult(data) {
-        const assetPrairsResult = JSON.parse(data).result;
+        var assetPrairsResult = JSON.parse(data).result
         var results = []
         var pairQuery = []
-        for(var assetPrairKey in assetPrairsResult) {
-            const assetPrair = assetPrairsResult[assetPrairKey]
-            if(assetPrair.quote.indexOf(settings.currency) !== -1 && assetPrair.wsname) {
+        for (var assetPrairKey in assetPrairsResult) {
+            var assetPrair = assetPrairsResult[assetPrairKey]
+            if (assetPrair.quote.indexOf(settings.currency) !== -1
+                    && assetPrair.wsname) {
                 results.push({
-                                 key: assetPrairKey,
-                                 name: assetPrair.base,
-                                 quote: assetPrair.quote,
-                                 ticker: {
-                                     opening: 0,
-                                     low: 0,
-                                     high: 0,
-                                     ask: 0,
-                                     bid: 0,
-                                     current: 0,
-                                     last24: 0
+                                 "key": assetPrairKey,
+                                 "name": assetPrair.base,
+                                 "quote": assetPrair.quote,
+                                 "ticker": {
+                                     "opening": 0,
+                                     "low": 0,
+                                     "high": 0,
+                                     "ask": 0,
+                                     "bid": 0,
+                                     "current": 0,
+                                     "last24": 0
                                  }
                              })
                 pairQuery.push(assetPrairKey)
@@ -129,23 +103,32 @@ Page {
         }
 
         // Collect all keys so that we can gather the ticker data
-        const tickerUrl = "https://api.kraken.com/0/public/Ticker?pair=" + pairQuery.join(",")
-        const tickerResult = getData(tickerUrl, false)
-        if(tickerResult){
-            const tickerData = JSON.parse(tickerResult).result
-            for(var idx in results) {
-                results[idx].ticker.opening = parseFloat(tickerData[results[idx].key].o)
-                results[idx].ticker.low = parseFloat(tickerData[results[idx].key].l[0])
-                results[idx].ticker.high = parseFloat(tickerData[results[idx].key].h[0])
-                results[idx].ticker.ask = parseFloat(tickerData[results[idx].key].a[0])
-                results[idx].ticker.bid = parseFloat(tickerData[results[idx].key].b[0])
-                results[idx].ticker.current = parseFloat(tickerData[results[idx].key].c[0])
-                results[idx].ticker.low24 = parseFloat(tickerData[results[idx].key].l[1])
+        var tickerUrl = "https://api.kraken.com/0/public/Ticker?pair=" + pairQuery.join(
+                    ",")
+        var tickerResult = functions.getData(tickerUrl, false)
+        if (tickerResult) {
+            var tickerData = JSON.parse(tickerResult).result
+            for (var idx in results) {
+                results[idx].ticker.opening = parseFloat(
+                            tickerData[results[idx].key].o)
+                results[idx].ticker.low = parseFloat(
+                            tickerData[results[idx].key].l[0])
+                results[idx].ticker.high = parseFloat(
+                            tickerData[results[idx].key].h[0])
+                results[idx].ticker.ask = parseFloat(
+                            tickerData[results[idx].key].a[0])
+                results[idx].ticker.bid = parseFloat(
+                            tickerData[results[idx].key].b[0])
+                results[idx].ticker.current = parseFloat(
+                            tickerData[results[idx].key].c[0])
+                results[idx].ticker.low24 = parseFloat(
+                            tickerData[results[idx].key].l[1])
             }
 
             // Save the results in the state
             assetPrairs = results
         } else {
+
             // Fixme Add loader error!
         }
 
@@ -162,9 +145,13 @@ Page {
         id: settings
     }
 
+    Functions {
+        id: functions
+    }
+
     Component.onCompleted: {
-        if(assetPrairs.length === 0) {
-            refreshData();
+        if (assetPrairs.length === 0) {
+            refreshData()
         }
     }
 }

@@ -29,8 +29,12 @@
 <context>
     <name>PairDetails</name>
     <message>
-        <source>Item</source>
-        <translation type="unfinished">Element</translation>
+        <source>Asks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bids</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
