@@ -43,7 +43,7 @@ SilicaListView {
             width: parent.width
         }
 
-        onClicked: pageStack.push(Qt.resolvedUrl("PairDetails.qml"), {
+        onClicked: pageStack.push(Qt.resolvedUrl("../pages/PairDetails.qml"), {
                                       "pair": assetPrairs[index]
                                   }) //console.log("Clicked " + assetPrairs[index].key)
     }
