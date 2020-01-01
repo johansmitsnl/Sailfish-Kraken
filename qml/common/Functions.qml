@@ -1,32 +1,25 @@
-import QtQuick 2.0
+import QtQuick 2.6
+import io.thp.pyotherside 1.5
 import "."
 
 Item {
 
     // Functions
-    function getData(url, callbackFunction) {
-        var xmlhttp = new XMLHttpRequest()
+    function apiKeyPresent() {
+        return settings.apiKey !== "" && settings.apiSecret !== ""
+    }
 
-        var callBackEnabled = callbackFunction ? true : false
-
-        if (callBackEnabled) {
-            xmlhttp.onreadystatechange = function () {
-                if (callbackFunction && xmlhttp.readyState === 4
-                        && xmlhttp.status === 200) {
-                    callbackFunction(xmlhttp.responseText)
-                }
-            }
+    function currencySymbol() {
+        var result = ""
+        switch (settings.currency) {
+        case 'EUR':
+            result = "€"
+            break
+        case 'USD':
+            result = "$"
+            break
         }
-        xmlhttp.open("GET", url, (callbackFunction ? true : false))
-        xmlhttp.send()
-
-        if (!callBackEnabled) {
-            if (xmlhttp.status === 200) {
-                return (xmlhttp.responseText)
-            } else {
-                return false
-            }
-        }
+        return result
     }
 
     function formatPrice(input, digets) {
@@ -44,25 +37,95 @@ Item {
         return currencySymbol() + input.toFixed(fixedPrecision)
     }
 
-    function currencySymbol() {
-        var result = ""
-        switch (settings.currency) {
-        case 'EUR':
-            result = "€"
-            break
-        case 'USD':
-            result = "$"
-            break
+    function getData(inputUrl, callbackFunction) {
+        console.debug("python test:", python.test())
+        var xmlhttp = new XMLHttpRequest()
+        var url = Qt.resolvedUrl(inputUrl)
+        var path = url.match(/^https:\/\/.+(\/.+)/)[1]
+
+        var callBackEnabled = callbackFunction ? true : false
+
+        if (callBackEnabled) {
+            xmlhttp.onreadystatechange = function () {
+                if (callbackFunction && xmlhttp.readyState === 4
+                        && xmlhttp.status === 200) {
+                    callbackFunction(xmlhttp.responseText)
+                }
+            }
         }
-        return result
+        xmlhttp.open("GET", url.toString(), (callbackFunction ? true : false))
+        xmlhttp.send()
+
+        if (!callBackEnabled) {
+            if (xmlhttp.status === 200) {
+                return (xmlhttp.responseText)
+            } else {
+                return false
+            }
+        }
     }
 
-    function apiKeyPresent() {
-        return settings.apiKey !== "" && settings.apiSecret !== ""
+    function getPrivateData(inputUrl, callbackFunction) {
+        var xmlhttp = new XMLHttpRequest()
+        var url = Qt.resolvedUrl(inputUrl)
+        var path = url.match(/^https:\/\/.+(\/.+)/)[1]
+
+        var callBackEnabled = callbackFunction ? true : false
+
+        if (callBackEnabled) {
+            xmlhttp.onreadystatechange = function () {
+                if (callbackFunction && xmlhttp.readyState === 4
+                        && xmlhttp.status === 200) {
+                    callbackFunction(xmlhttp.responseText)
+                }
+            }
+        }
+
+        // API headers calculation
+        // Create a signature for a request
+
+        xmlhttp.setRequestHeader("API-Key", settings.apiKey)
+        xmlhttp.setRequestHeader("API-Sign", settings.apiKey)
+
+        xmlhttp.open("POST",  url.toString(), (callbackFunction ? true : false))
+        xmlhttp.send()
+
+        if (!callBackEnabled) {
+            if (xmlhttp.status === 200) {
+                return (xmlhttp.responseText)
+            } else {
+                return false
+            }
+        }
     }
 
     // Elements
     Settings {
         id: settings
+    }
+
+    Python {
+        id: python
+
+        Component.onCompleted: {
+            addImportPath(Qt.resolvedUrl('.'));
+
+            setHandler('progress', function(ratio) {
+                dlprogress.value = ratio;
+            });
+            setHandler('finished', function(newvalue) {
+                page.downloading = false;
+                mainLabel.text = 'Color is ' + newvalue + '.';
+            });
+
+            importModule('KrakenApi', function () {});
+
+        }
+
+        function test() {
+            return call_sync('KrakenApi.krakenapi.test', "")
+        }
+
+
     }
 }

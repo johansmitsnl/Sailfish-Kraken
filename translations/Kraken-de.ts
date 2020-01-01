@@ -39,13 +39,13 @@
         <source></source>
         <translation type="unfinished"></translation>
     </message>
+    <message id="total">
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Balance</name>
-    <message>
-        <source>balance</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>needs-login</source>
         <translation type="unfinished"></translation>
