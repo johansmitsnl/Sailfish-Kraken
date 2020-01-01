@@ -11,6 +11,45 @@
         <source></source>
         <translation type="unfinished"></translation>
     </message>
+    <message id="login">
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="credentials">
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="api-key">
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="enter-api-key">
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="api-secret">
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="enter-api-secret">
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="save-credentials">
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Balance</name>
+    <message>
+        <source>balance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>needs-login</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
@@ -22,18 +61,22 @@
 <context>
     <name>Home</name>
     <message>
-        <source>Refresh now</source>
+        <source>update-login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>refresh-now</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PairDetails</name>
     <message>
-        <source>Asks</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Bids</source>
+        <source>Refresh now</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

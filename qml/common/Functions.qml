@@ -56,6 +56,10 @@ Item {
         return result
     }
 
+    function apiKeyPresent() {
+        return settings.apiKey !== "" && settings.apiSecret !== ""
+    }
+
     Settings {
         id: settings
     }

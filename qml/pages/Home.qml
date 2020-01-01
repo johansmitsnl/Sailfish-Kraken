@@ -20,7 +20,12 @@ Page {
         // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
         PullDownMenu {
             MenuItem {
-                text: qsTr("Refresh now")
+                text: functions.apiKeyPresent() ? qsTr("update-login") : qsTr("login")
+                onClicked: pageStack.push(Qt.resolvedUrl("Credentials.qml"))
+            }
+
+            MenuItem {
+                text: qsTr("refresh-now")
                 onClicked: refreshData()
             }
         }
@@ -58,8 +63,7 @@ Page {
             }
             Component {
                 id: balanceView
-                Label {
-                    text: "Some nice text"
+                Balance {
                 }
             }
         }

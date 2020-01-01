@@ -9,4 +9,6 @@ ConfigurationGroup {
 
     property string currency: "USD"
     property var homeTab: 0
+    property string apiKey: ""
+    property string apiSecret: ""
 }
