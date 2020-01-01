@@ -4,6 +4,19 @@ import Sailfish.Silica 1.0
 import "../common"
 
 Page {
+
+    // Functions
+    function saveCredentials() {
+        console.debug("Save API credentials")
+        settings.apiKey = apiKeyInput.text
+        settings.apiSecret = apiSecretInput.text
+    }
+
+    // Elements
+    Settings {
+        id: settings
+    }
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: mainColumn.height
@@ -53,15 +66,5 @@ Page {
                 onClicked: saveCredentials()
              }
         }
-    }
-
-    function saveCredentials() {
-        console.debug("Save API credentials")
-        settings.apiKey = apiKeyInput.text
-        settings.apiSecret = apiSecretInput.text
-    }
-
-    Settings {
-        id: settings
     }
 }

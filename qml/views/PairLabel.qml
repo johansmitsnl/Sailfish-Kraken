@@ -4,6 +4,7 @@ import "../common"
 
 Item {
 
+    // Properties
     property var pair: ({
                             "name": "unkown",
                             "key": "unknown",
@@ -15,8 +16,31 @@ Item {
                                 "bid": 0
                             }
                         })
-
+    // Element values
     x: Theme.horizontalPageMargin
+
+    // Functions
+    function ticker() {
+        return pair.ticker
+    }
+
+    function currentPrice() {
+        return ticker().current
+    }
+
+    function priceChange() {
+        return (currentPrice() - ticker().opening)
+    }
+
+    function percentageNow() {
+        return ((currentPrice() - ticker().low24) / ticker(
+                    ).low24 * 100).toFixed(2)
+    }
+
+    // Elements
+    Functions {
+        id: functions
+    }
 
     Column {
 
@@ -70,26 +94,5 @@ Item {
                 font.pixelSize: Theme.fontSizeExtraSmall
             }
         }
-    }
-
-    function ticker() {
-        return pair.ticker
-    }
-
-    function currentPrice() {
-        return ticker().current
-    }
-
-    function priceChange() {
-        return (currentPrice() - ticker().opening)
-    }
-
-    function percentageNow() {
-        return ((currentPrice() - ticker().low24) / ticker(
-                    ).low24 * 100).toFixed(2)
-    }
-
-    Functions {
-        id: functions
     }
 }

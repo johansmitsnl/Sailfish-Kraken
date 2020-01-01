@@ -5,70 +5,17 @@ import "../common"
 import "../views"
 
 Page {
-    id: page
 
+    // Properties
     property var assetPrairs: []
     property var loading: false
 
+    // Element values
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
+    id: page
 
-    // To enable PullDownMenu, place our content in a SilicaFlickable
-    SilicaFlickable {
-        anchors.fill: parent
-
-        // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
-        PullDownMenu {
-            MenuItem {
-                text: functions.apiKeyPresent() ? qsTr("update-login") : qsTr("login")
-                onClicked: pageStack.push(Qt.resolvedUrl("Credentials.qml"))
-            }
-
-            MenuItem {
-                text: qsTr("refresh-now")
-                onClicked: refreshData()
-            }
-        }
-
-        BusyIndicator {
-            size: BusyIndicatorSize.Large
-            anchors.centerIn: parent
-            running: loading && assetPrairs.length === 0
-        }
-
-        TabView {
-            id: tabs
-
-            anchors.fill: parent
-            currentIndex: settings.homeTab
-
-            header: TabButtonRow {
-                Repeater {
-                    model: [qsTrId("market"), qsTrId("balance")]
-
-                    TabButton {
-                        onClicked: changeTab(model.index)
-
-                        title: modelData
-                        tabIndex: model.index
-                    }
-                }
-            }
-
-            model: [marketView, balanceView]
-            Component {
-                id: marketView
-                Market {
-                }
-            }
-            Component {
-                id: balanceView
-                Balance {
-                }
-            }
-        }
-    }
-
+    // Functions
     function changeTab(index) {
         settings.homeTab = index
         tabs.moveTo(index)
@@ -146,17 +93,74 @@ Page {
         refreshData()
     }
 
-    Settings {
-        id: settings
-    }
-
+    // Elements
     Functions {
         id: functions
+    }
+
+    Settings {
+        id: settings
     }
 
     Component.onCompleted: {
         if (assetPrairs.length === 0) {
             refreshData()
+        }
+    }
+
+    // To enable PullDownMenu, place our content in a SilicaFlickable
+    SilicaFlickable {
+        anchors.fill: parent
+
+        // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
+        PullDownMenu {
+            MenuItem {
+                text: functions.apiKeyPresent() ? qsTr("update-login") : qsTr("login")
+                onClicked: pageStack.push(Qt.resolvedUrl("Credentials.qml"))
+            }
+
+            MenuItem {
+                text: qsTr("refresh-now")
+                onClicked: refreshData()
+            }
+        }
+
+        BusyIndicator {
+            size: BusyIndicatorSize.Large
+            anchors.centerIn: parent
+            running: loading && assetPrairs.length === 0
+        }
+
+        TabView {
+            id: tabs
+
+            anchors.fill: parent
+            currentIndex: settings.homeTab
+
+            header: TabButtonRow {
+                Repeater {
+                    model: [qsTrId("market"), qsTrId("balance")]
+
+                    TabButton {
+                        onClicked: changeTab(model.index)
+
+                        title: modelData
+                        tabIndex: model.index
+                    }
+                }
+            }
+
+            model: [marketView, balanceView]
+            Component {
+                id: marketView
+                Market {
+                }
+            }
+            Component {
+                id: balanceView
+                Balance {
+                }
+            }
         }
     }
 }

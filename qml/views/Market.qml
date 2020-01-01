@@ -3,11 +3,14 @@ import Sailfish.Silica 1.0
 import "../views"
 
 SilicaListView {
+
+    // Element values
     id: listView
-    y: tabs.height
-    model: assetPrairs
     anchors.fill: parent
+    model: assetPrairs
     visible: assetPrairs.length !== 0
+    y: tabs.height
+
     header: ComboBox {
         width: parent.width
         label: "Currenty"

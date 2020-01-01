@@ -4,15 +4,60 @@ import "../common"
 import "../views"
 
 Page {
-    id: page
 
+    // Properties
     property var pair: ({
 
                         })
     property var orderBookAsks: []
     property var orderBookBids: []
 
+    // Element values
+    id: page
     allowedOrientations: Orientation.All
+
+    // Functions
+    function refreshData() {
+        console.debug("Load orderbook")
+        var OrderbookData = JSON.parse(
+                    functions.getData(
+                        "https://api.kraken.com/0/public/Depth?pair=" + pair.key,
+                        false)).result
+        var resultAsks = []
+        var resultBids = []
+        var asks = OrderbookData[pair.key].asks
+        var bids = OrderbookData[pair.key].bids
+
+        for (var askIdx in asks) {
+            resultAsks.push({
+                                "price": parseFloat(asks[askIdx][0]),
+                                "volume": parseFloat(asks[askIdx][1])
+                            })
+        }
+
+        for (var bidIdx in bids) {
+            resultBids.push({
+                                "price": parseFloat(bids[bidIdx][0]),
+                                "volume": parseFloat(bids[bidIdx][1])
+                            })
+        }
+
+        orderBookAsks = resultAsks
+        orderBookBids = resultBids
+    }
+
+    Component.onCompleted: {
+        refreshData()
+    }
+
+    // Elements
+    Functions {
+        id: functions
+    }
+
+    Settings {
+        id: settings
+    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -87,46 +132,5 @@ Page {
                 }
             }
         }
-    }
-
-    function refreshData() {
-        console.debug("Load orderbook")
-        var OrderbookData = JSON.parse(
-                    functions.getData(
-                        "https://api.kraken.com/0/public/Depth?pair=" + pair.key,
-                        false)).result
-        var resultAsks = []
-        var resultBids = []
-        var asks = OrderbookData[pair.key].asks
-        var bids = OrderbookData[pair.key].bids
-
-        for (var askIdx in asks) {
-            resultAsks.push({
-                                "price": parseFloat(asks[askIdx][0]),
-                                "volume": parseFloat(asks[askIdx][1])
-                            })
-        }
-
-        for (var bidIdx in bids) {
-            resultBids.push({
-                                "price": parseFloat(bids[bidIdx][0]),
-                                "volume": parseFloat(bids[bidIdx][1])
-                            })
-        }
-
-        orderBookAsks = resultAsks
-        orderBookBids = resultBids
-    }
-
-    Component.onCompleted: {
-        refreshData()
-    }
-
-    Settings {
-        id: settings
-    }
-
-    Functions {
-        id: functions
     }
 }

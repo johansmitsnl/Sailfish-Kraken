@@ -3,6 +3,7 @@ import "."
 
 Item {
 
+    // Functions
     function getData(url, callbackFunction) {
         var xmlhttp = new XMLHttpRequest()
 
@@ -60,6 +61,7 @@ Item {
         return settings.apiKey !== "" && settings.apiSecret !== ""
     }
 
+    // Elements
     Settings {
         id: settings
     }

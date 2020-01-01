@@ -3,10 +3,18 @@ import Sailfish.Silica 1.0
 import "../common"
 
 Item {
+
+    // Properties
     property var row: ({})
 
-    x: Theme.horizontalPageMargin
+    // Element values
     width: parent.width
+    x: Theme.horizontalPageMargin
+
+    // Elements
+    Functions {
+        id: functions
+    }
 
     Column {
         width: parent.width
@@ -39,9 +47,5 @@ Item {
                 width: parent.width / 4
             }
         }
-    }
-
-    Functions {
-        id: functions
     }
 }
