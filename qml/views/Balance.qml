@@ -9,12 +9,14 @@ SilicaFlickable {
     anchors.fill: parent
     contentHeight: loginColumn.height + mainColumn.height
 
-    // Functions
+    // Elements
     Functions {
         id: functions
     }
 
-    // Elements
+    Settings {
+        id: settings
+    }
 
     // When no credentials are set show that they are needed
     Column {
@@ -40,11 +42,17 @@ SilicaFlickable {
         width: parent.width
 
         PageHeader {
-            title: qsTr("balance") + " (" + settings.currency + ")"
+            title: qsTrId("balance") + " (" + settings.currency + ")"
         }
 
         SectionHeader {
-            text: "Orderbook"
+            text: qsTrId("total")
+        }
+
+        Label {
+            x: Theme.horizontalPageMargin
+            text: functions.currencySymbol() + "100.00"
         }
     }
+
 }
