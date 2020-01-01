@@ -29,7 +29,7 @@ Item {
     }
 
     function priceChange() {
-        return (currentPrice() - ticker().opening)
+        return (currentPrice() - ticker().low24)
     }
 
     function percentageNow() {
