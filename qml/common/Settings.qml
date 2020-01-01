@@ -8,6 +8,7 @@ ConfigurationGroup {
     property var homeTab: 0
     property string apiKey: ""
     property string apiSecret: ""
+    property var apiNonce: 0
 
     // Element values
     id: configuration
