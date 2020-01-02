@@ -1,10 +1,10 @@
-import pyotherside
+#import pyotherside
 
 class KrakenApi:
   def __init__(self):
-    print("Hoi")
+    return None
 
   def test(self):
-    return "Hoi hoi"
+    return "Hoi doei"
 
 krakenapi = KrakenApi()
