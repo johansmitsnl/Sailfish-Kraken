@@ -38,7 +38,7 @@ Item {
     }
 
     function getData(inputUrl, callbackFunction) {
-        console.debug("python test:", krakenApi.test())
+        console.debug("python Balance:", krakenApi.balance())
         var xmlhttp = new XMLHttpRequest()
         var url = Qt.resolvedUrl(inputUrl)
         var path = url.match(/^https:\/\/.+(\/.+)/)[1]
@@ -123,10 +123,9 @@ Item {
 
         }
 
-        function test() {
-            return call_sync('KrakenApi.krakenapi.test', "")
+        function balance() {
+            return call_sync('KrakenApi.krakenapi.balance', [settings.apiKey, settings.apiSecret]).result.BAT
         }
-
 
     }
 }
