@@ -20,7 +20,7 @@ HEADERS +=
 
 DISTFILES += qml/Kraken.qml \
     qml/common/Functions.qml \
-    qml/common/KrakenApi.py \
+    lib/python/* \
     qml/cover/CoverPage.qml \
     qml/views/Balance.qml \
     qml/pages/Credentials.qml \
@@ -35,6 +35,11 @@ DISTFILES += qml/Kraken.qml \
     rpm/Kraken.yaml \
     translations/*.ts \
     Kraken.desktop
+
+lib_files.files = lib
+lib_files.path = /usr/share/$$TARGET
+
+INSTALLS += lib_files
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 

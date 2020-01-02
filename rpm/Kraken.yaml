@@ -25,19 +25,21 @@ PkgConfigBR:
   - Qt5Quick
 
 # Build dependencies without a pkgconfig setup can be listed here
-# PkgBR:
-#   - package-needed-to-build
+PkgBR:
+  - python3-devel
 
 # Runtime dependencies which are not automatically detected
 Requires:
   - sailfishsilica-qt5 >= 0.10.9 
   - pyotherside-qml-plugin-python3-qt5
   - libsailfishapp-launcher
+  - python3-base
 
 # All installed files
 Files:
   - '%{_bindir}'
   - '%{_datadir}/%{name}'
+  - '%{_datadir}/%{name}/lib'
   - '%{_datadir}/applications/%{name}.desktop'
   - '%{_datadir}/icons/hicolor/*/apps/%{name}.png'
 

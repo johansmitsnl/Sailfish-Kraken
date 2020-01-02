@@ -5,6 +5,6 @@ class KrakenApi:
     return None
 
   def test(self):
-    return "Hoi doei"
+    return "Hoi doei!"
 
 krakenapi = KrakenApi()

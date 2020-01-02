@@ -38,7 +38,7 @@ Item {
     }
 
     function getData(inputUrl, callbackFunction) {
-        console.debug("python test:", python.test())
+        console.debug("python test:", krakenApi.test())
         var xmlhttp = new XMLHttpRequest()
         var url = Qt.resolvedUrl(inputUrl)
         var path = url.match(/^https:\/\/.+(\/.+)/)[1]
@@ -105,7 +105,7 @@ Item {
     }
 
     Python {
-        id: python
+        id: krakenApi
 
         Component.onCompleted: {
             addImportPath(Qt.resolvedUrl('.'));
@@ -118,7 +118,8 @@ Item {
                 mainLabel.text = 'Color is ' + newvalue + '.';
             });
 
-            importModule('KrakenApi', function () {});
+            addImportPath('/usr/share/Kraken/lib/python');
+            importModule_sync('KrakenApi', function () {});
 
         }
 
