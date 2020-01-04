@@ -21,6 +21,7 @@ HEADERS +=
 DISTFILES += qml/Kraken.qml \
     qml/common/Functions.qml \
     lib/python/* \
+    qml/common/KrakenApi.qml \
     qml/cover/CoverPage.qml \
     qml/views/Balance.qml \
     qml/pages/Credentials.qml \

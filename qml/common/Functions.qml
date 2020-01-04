@@ -1,8 +1,9 @@
 import QtQuick 2.6
-import io.thp.pyotherside 1.5
-import "."
 
 Item {
+
+    property bool loaded: false
+    property var settings
 
     // Functions
     function apiKeyPresent() {
@@ -37,95 +38,12 @@ Item {
         return currencySymbol() + input.toFixed(fixedPrecision)
     }
 
-    function getData(inputUrl, callbackFunction) {
-        console.debug("python Balance:", krakenApi.balance())
-        var xmlhttp = new XMLHttpRequest()
-        var url = Qt.resolvedUrl(inputUrl)
-        var path = url.match(/^https:\/\/.+(\/.+)/)[1]
-
-        var callBackEnabled = callbackFunction ? true : false
-
-        if (callBackEnabled) {
-            xmlhttp.onreadystatechange = function () {
-                if (callbackFunction && xmlhttp.readyState === 4
-                        && xmlhttp.status === 200) {
-                    callbackFunction(xmlhttp.responseText)
-                }
-            }
-        }
-        xmlhttp.open("GET", url.toString(), (callbackFunction ? true : false))
-        xmlhttp.send()
-
-        if (!callBackEnabled) {
-            if (xmlhttp.status === 200) {
-                return (xmlhttp.responseText)
-            } else {
-                return false
-            }
-        }
-    }
-
-    function getPrivateData(inputUrl, callbackFunction) {
-        var xmlhttp = new XMLHttpRequest()
-        var url = Qt.resolvedUrl(inputUrl)
-        var path = url.match(/^https:\/\/.+(\/.+)/)[1]
-
-        var callBackEnabled = callbackFunction ? true : false
-
-        if (callBackEnabled) {
-            xmlhttp.onreadystatechange = function () {
-                if (callbackFunction && xmlhttp.readyState === 4
-                        && xmlhttp.status === 200) {
-                    callbackFunction(xmlhttp.responseText)
-                }
-            }
-        }
-
-        // API headers calculation
-        // Create a signature for a request
-
-        xmlhttp.setRequestHeader("API-Key", settings.apiKey)
-        xmlhttp.setRequestHeader("API-Sign", settings.apiKey)
-
-        xmlhttp.open("POST",  url.toString(), (callbackFunction ? true : false))
-        xmlhttp.send()
-
-        if (!callBackEnabled) {
-            if (xmlhttp.status === 200) {
-                return (xmlhttp.responseText)
-            } else {
-                return false
-            }
-        }
+    function balanceResult(result) {
+        console.debug("balance_result", result.result.BAT)
     }
 
     // Elements
     Settings {
         id: settings
-    }
-
-    Python {
-        id: krakenApi
-
-        Component.onCompleted: {
-            addImportPath(Qt.resolvedUrl('.'));
-
-            setHandler('progress', function(ratio) {
-                dlprogress.value = ratio;
-            });
-            setHandler('finished', function(newvalue) {
-                page.downloading = false;
-                mainLabel.text = 'Color is ' + newvalue + '.';
-            });
-
-            addImportPath('/usr/share/Kraken/lib/python');
-            importModule_sync('KrakenApi', function () {});
-
-        }
-
-        function balance() {
-            return call_sync('KrakenApi.krakenapi.balance', [settings.apiKey, settings.apiSecret]).result.BAT
-        }
-
     }
 }

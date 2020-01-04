@@ -8,7 +8,7 @@ Page {
 
     // Properties
     property var assetPrairs: []
-    property var loading: false
+    property bool loading: false
 
     // Element values
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
@@ -24,12 +24,11 @@ Page {
     function refreshData() {
         console.debug("Reload the data from the API")
         loading = true
-        functions.getData("https://api.kraken.com/0/public/AssetPairs",
-                          refreshResult)
+        krakenApi.queryPublic(['AssetPairs'], refreshResult)
     }
 
     function refreshResult(data) {
-        var assetPrairsResult = JSON.parse(data).result
+        var assetPrairsResult = data.result
         var results = []
         var pairQuery = []
         for (var assetPrairKey in assetPrairsResult) {
@@ -55,34 +54,29 @@ Page {
         }
 
         // Collect all keys so that we can gather the ticker data
-        var tickerUrl = "https://api.kraken.com/0/public/Ticker?pair=" + pairQuery.join(
-                    ",")
-        var tickerResult = functions.getData(tickerUrl, false)
-        if (tickerResult) {
-            var tickerData = JSON.parse(tickerResult).result
-            for (var idx in results) {
-                results[idx].ticker.opening = parseFloat(
-                            tickerData[results[idx].key].o)
-                results[idx].ticker.low = parseFloat(
-                            tickerData[results[idx].key].l[0])
-                results[idx].ticker.high = parseFloat(
-                            tickerData[results[idx].key].h[0])
-                results[idx].ticker.ask = parseFloat(
-                            tickerData[results[idx].key].a[0])
-                results[idx].ticker.bid = parseFloat(
-                            tickerData[results[idx].key].b[0])
-                results[idx].ticker.current = parseFloat(
-                            tickerData[results[idx].key].c[0])
-                results[idx].ticker.low24 = parseFloat(
-                            tickerData[results[idx].key].l[1])
-            }
+        //var tickerUrl = "https://api.kraken.com/0/public/Ticker?pair="
+        var tickerResult = krakenApi.queryPublic(['Ticker', {pair: pairQuery.join(",")}])
+        var tickerData = tickerResult.result
+        for (var idx in results) {
 
-            // Save the results in the state
-            assetPrairs = results
-        } else {
-
-            // Fixme Add loader error!
+            results[idx].ticker.opening = parseFloat(
+                        tickerData[results[idx].key].o)
+            results[idx].ticker.low = parseFloat(
+                        tickerData[results[idx].key].l[0])
+            results[idx].ticker.high = parseFloat(
+                        tickerData[results[idx].key].h[0])
+            results[idx].ticker.ask = parseFloat(
+                        tickerData[results[idx].key].a[0])
+            results[idx].ticker.bid = parseFloat(
+                        tickerData[results[idx].key].b[0])
+            results[idx].ticker.current = parseFloat(
+                        tickerData[results[idx].key].c[0])
+            results[idx].ticker.low24 = parseFloat(
+                        tickerData[results[idx].key].l[1])
         }
+
+        // Save the results in the state
+        assetPrairs = results
 
         loading = false
     }
@@ -96,6 +90,10 @@ Page {
     // Elements
     Functions {
         id: functions
+    }
+
+    KrakenApi {
+        id: krakenApi
     }
 
     Settings {
@@ -128,7 +126,7 @@ Page {
         BusyIndicator {
             size: BusyIndicatorSize.Large
             anchors.centerIn: parent
-            running: loading && assetPrairs.length === 0
+            running: loading
         }
 
         TabView {

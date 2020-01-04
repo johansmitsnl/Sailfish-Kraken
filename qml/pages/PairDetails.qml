@@ -6,11 +6,10 @@ import "../views"
 Page {
 
     // Properties
-    property var pair: ({
-
-                        })
+    property var pair: ({})
     property var orderBookAsks: []
     property var orderBookBids: []
+    property bool loading: false
 
     // Element values
     id: page
@@ -19,10 +18,12 @@ Page {
     // Functions
     function refreshData() {
         console.debug("Load orderbook")
-        var OrderbookData = JSON.parse(
-                    functions.getData(
-                        "https://api.kraken.com/0/public/Depth?pair=" + pair.key,
-                        false)).result
+        loading = true
+        krakenApi.queryPublic(['Depth', {pair: pair.key}], refreshResult)
+    }
+
+    function refreshResult(data) {
+        var OrderbookData = data.result
         var resultAsks = []
         var resultBids = []
         var asks = OrderbookData[pair.key].asks
@@ -44,6 +45,7 @@ Page {
 
         orderBookAsks = resultAsks
         orderBookBids = resultBids
+        loading = false
     }
 
     Component.onCompleted: {
@@ -55,8 +57,18 @@ Page {
         id: functions
     }
 
+    KrakenApi {
+        id: krakenApi
+    }
+
     Settings {
         id: settings
+    }
+
+    BusyIndicator {
+        size: BusyIndicatorSize.Large
+        anchors.centerIn: parent
+        running: loading
     }
 
     SilicaFlickable {
