@@ -1,18 +1,25 @@
 Name: Kraken
-Summary: Kraken
-Version: 0.1
+Summary: This is a simple client for the Kraken Exchange.
+Version: 0.0.1
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS
 Group: Qt/Qt
-URL: http://example.org/
-License: LICENSE
+URL: https://github.com/johansmitsnl/Sailfish-Kraken/
+License: GNU General Public License v3.0
 # This must be generated before uploading a package to a remote build service.
 # Usually this line does not need to be modified.
 Sources:
 - '%{name}-%{version}.tar.bz2'
-Description: |
-  Short description of my Sailfish OS Application
+Description: |-
+  This is a simple client for the Kraken Exchange.
+
+  Functionality:
+
+  * Show current value
+  * Show daily high and low
+  * Show balance (needs token)
+
 Configure: none
 Builder: qmake5
 
@@ -33,7 +40,6 @@ Requires:
   - sailfishsilica-qt5 >= 0.10.9 
   - pyotherside-qml-plugin-python3-qt5
   - libsailfishapp-launcher
-  - python3-base
 
 # All installed files
 Files:
