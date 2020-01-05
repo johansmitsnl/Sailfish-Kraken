@@ -11,7 +11,7 @@ Page {
     property var assetPrairs: []
     property var assetsBalance: []
     property var totalBalance: 0
-    property var updatedAt: new Date(0)
+    property var updatedAt: new Date()
 
     // Element values
     // The effective value will be restricted by ApplicationWindow.allowedOrientations

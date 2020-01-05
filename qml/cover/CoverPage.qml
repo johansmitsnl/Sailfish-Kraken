@@ -4,7 +4,24 @@ import "../common"
 import "../pages"
 
 CoverBackground {
+    id: cover
 
+    property string _elapsedText
+
+    function refreshElapsed() {
+        _elapsedText = Format.formatDate(home.updatedAt, Formatter.DurationElapsed)
+    }
+
+    Timer {
+        triggeredOnStart: true
+        running: cover.status === Cover.Active
+        interval: 60000
+        repeat: true
+
+        onTriggered: {
+            refreshElapsed();
+        }
+    }
 
     BusyIndicator {
         size: BusyIndicatorSize.Large
@@ -23,8 +40,7 @@ CoverBackground {
             font.pixelSize: Theme.fontSizeLarge
             color: Theme.highlightColor
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            text: Format.formatDate(home.updatedAt,
-                                    Formatter.DurationElapsed);
+            text: _elapsedText
             visible: !home.loading
         }
 
@@ -44,7 +60,10 @@ CoverBackground {
 
         CoverAction {
             iconSource: "image://theme/icon-cover-refresh"
-            onTriggered: home.refreshData()
+            onTriggered: {
+                home.refreshData()
+                refreshElapsed()
+            }
         }
     }
 
@@ -55,5 +74,9 @@ CoverBackground {
 
     Functions {
         id: functions
+    }
+
+    Component.onCompleted: {
+        refreshElapsed();
     }
 }
