@@ -13,7 +13,7 @@ Version:    0.1
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
-URL:        http://example.org/
+URL:        https://github.com/johansmitsnl/Sailfish-Kraken/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  Kraken.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
