@@ -30,8 +30,11 @@ CoverBackground {
     }
 
     Column {
-        spacing: 40
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.leftMargin: Theme.paddingLarge
+        anchors.rightMargin: Theme.paddingLarge
+        width: parent.width
 
         Label {
             topPadding: 30 * Theme.pixelRatio
