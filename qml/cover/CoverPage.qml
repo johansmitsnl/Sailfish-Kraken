@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "../common"
 
 CoverBackground {
     Label {
@@ -12,11 +13,11 @@ CoverBackground {
         id: coverAction
 
         CoverAction {
-            iconSource: "image://theme/icon-cover-next"
+            iconSource: "image://theme/icon-cover-refresh"
         }
+    }
 
-        CoverAction {
-            iconSource: "image://theme/icon-cover-pause"
-        }
+    Functions {
+        id: functions
     }
 }

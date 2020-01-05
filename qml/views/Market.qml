@@ -48,7 +48,7 @@ SilicaListView {
 
         onClicked: pageStack.push(Qt.resolvedUrl("../pages/PairDetails.qml"), {
                                       "pair": assetPrairs[index]
-                                  }) //console.log("Clicked " + assetPrairs[index].key)
+                                  })
     }
     VerticalScrollDecorator {
     }

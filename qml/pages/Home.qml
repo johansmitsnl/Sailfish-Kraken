@@ -7,8 +7,10 @@ import "../views"
 Page {
 
     // Properties
-    property var assetPrairs: []
     property bool loading: false
+    property var assetPrairs: []
+    property var assetsBalance: []
+    property var totalBalance: 0
 
     // Element values
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
@@ -22,7 +24,7 @@ Page {
     }
 
     function refreshData() {
-        console.debug("Reload the data from the API")
+        console.debug("Refresh Asset pairs")
         loading = true
         krakenApi.queryPublic(['AssetPairs'], refreshResult)
     }
@@ -79,6 +81,42 @@ Page {
         assetPrairs = results
 
         loading = false
+
+        refreshBalanceData()
+    }
+
+
+    function refreshBalanceData() {
+        console.debug("Refresh the balance data")
+        krakenApi.queryPrivate(['Balance'], callbackBalanceData)
+    }
+
+    function callbackBalanceData(data) {
+        //console.debug("Balance result returned")
+        var balance = data.result
+        var newTotalBalance = 0
+        var newAssetsBalance = []
+        //console.debug("result:", JSON.stringify(balance))
+        for (var idx in assetPrairs) {
+            //console.debug("idx", assetPrairs[idx].key)
+            //console.debug("Parent values", JSON.stringify(assetPrairs[idx]))
+            if(balance[assetPrairs[idx].name]) {
+                //console.debug("Amount of key", assetPrairs[idx].key, parseFloat(balance[assetPrairs[idx].name]))
+                var bal = parseFloat(balance[assetPrairs[idx].name])
+                if(bal > 0) {
+                    var assetTotal = bal * assetPrairs[idx].ticker.current
+                    newTotalBalance += assetTotal
+                    newAssetsBalance.push({
+                                              name: assetPrairs[idx].name,
+                                              balance: bal,
+                                              total: assetTotal
+                                          })
+                }
+            }
+        }
+
+        assetsBalance = newAssetsBalance
+        totalBalance = newTotalBalance
     }
 
     function setCurrency(cur) {
@@ -148,15 +186,17 @@ Page {
                 }
             }
 
-            model: [marketView, balanceView]
+            model: [marketComponent, balanceComponent]
             Component {
-                id: marketView
+                id: marketComponent
                 Market {
+                    id: marketView
                 }
             }
             Component {
-                id: balanceView
+                id: balanceComponent
                 Balance {
+                    id: balanceView
                 }
             }
         }

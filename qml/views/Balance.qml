@@ -9,6 +9,7 @@ SilicaFlickable {
     anchors.fill: parent
     contentHeight: loginColumn.height + mainColumn.height
 
+
     // Elements
     Functions {
         id: functions
@@ -36,23 +37,81 @@ SilicaFlickable {
     }
 
     // When credentials are set show the information needed
-    Column {
+    Item {
         visible: functions.apiKeyPresent()
         id: mainColumn
         width: parent.width
+        height: Screen.height
 
         PageHeader {
+            id: currencyHeader
             title: qsTrId("balance") + " (" + settings.currency + ")"
         }
 
-        SectionHeader {
-            text: qsTrId("total")
+        PageHeader {
+            id: totalBalanceHeader
+            anchors.top: currencyHeader.bottom
+            anchors.topMargin: 5
+
+            title: functions.formatPrice(totalBalance)
+
         }
 
-        Label {
+        SilicaListView {
+
+            // Element values
+            id: assetsListView
+            height: parent.height
+            anchors.top: totalBalanceHeader.bottom
+            anchors.topMargin: 5
+            width: parent.width
+
+            model: assetsBalance
+            visible: assetsBalance.length !== 0
             x: Theme.horizontalPageMargin
-            text: functions.currencySymbol() + "100.00"
+
+            delegate: BackgroundItem {
+                id: delegate
+
+                Column {
+                    id: pairLabel
+
+                    Row {
+                        spacing: Theme.horizontalPageMargin
+
+
+                        Text {
+                            text: functions.formatPrice(assetsBalance[index].total)
+                            font.pixelSize: Theme.fontSizeMediumBase
+                            color: Theme.primaryColor
+                            rightPadding: 20 * Theme.pixelRatio
+                        }
+
+                        Text {
+                            text: functions.formatNumber(assetsBalance[index].balance)
+                            font.pixelSize: Theme.fontSizeMediumBase
+                            color: Theme.primaryColor
+                            rightPadding: 20 * Theme.pixelRatio
+                        }
+
+                        Text {
+                            text: assetsBalance[index].name
+                            font.pixelSize: Theme.fontSizeMediumBase
+                            color: Theme.primaryColor
+                        }
+                    }
+                }
+
+                Separator {
+                    y: delegate.height
+                    width: parent.width
+                }
+            }
+            VerticalScrollDecorator {
+            }
         }
     }
+
+
 
 }

@@ -39,22 +39,11 @@
         <source></source>
         <translation type="unfinished"></translation>
     </message>
-    <message id="total">
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>Balance</name>
     <message>
         <source>needs-login</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CoverPage</name>
-    <message>
-        <source>My Cover</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

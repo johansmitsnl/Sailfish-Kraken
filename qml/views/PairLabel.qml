@@ -13,7 +13,8 @@ Item {
                                 "low": 0,
                                 "high": 0,
                                 "ask": 0,
-                                "bid": 0
+                                "bid": 0,
+                                "current": 0
                             }
                         })
     // Element values

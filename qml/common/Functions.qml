@@ -24,6 +24,14 @@ Item {
     }
 
     function formatPrice(input, digets) {
+        return currencySymbol() + formatNumber(input, digets)
+    }
+
+    function balanceResult(result) {
+        console.debug("balance_result", result.result.BAT)
+    }
+
+    function formatNumber(input, digets) {
 
         if(digets === undefined) {
             digets = 6
@@ -34,12 +42,7 @@ Item {
         if (fixedPrecision < 0) {
             fixedPrecision = 0
         }
-
-        return currencySymbol() + input.toFixed(fixedPrecision)
-    }
-
-    function balanceResult(result) {
-        console.debug("balance_result", result.result.BAT)
+        return input.toFixed(fixedPrecision)
     }
 
     // Elements
