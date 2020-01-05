@@ -19,16 +19,28 @@ SOURCES += src/Kraken.cpp
 HEADERS +=
 
 DISTFILES += qml/Kraken.qml \
+    qml/common/Functions.qml \
+    lib/python/* \
+    qml/common/KrakenApi.qml \
     qml/cover/CoverPage.qml \
-    qml/pages/FirstPage.qml \
+    qml/views/Balance.qml \
+    qml/pages/Credentials.qml \
     qml/pages/Home.qml \
-    qml/pages/SecondPage.qml \
+    qml/views/Market.qml \
+    qml/pages/PairDetails.qml \
+    qml/views/OrderbookRow.qml \
+    qml/views/PairLabel.qml \
     rpm/Kraken.changes.in \
     rpm/Kraken.changes.run.in \
     rpm/Kraken.spec \
     rpm/Kraken.yaml \
     translations/*.ts \
     Kraken.desktop
+
+lib_files.files = lib
+lib_files.path = /usr/share/$$TARGET
+
+INSTALLS += lib_files
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 
@@ -40,4 +52,4 @@ CONFIG += sailfishapp_i18n
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/Kraken-de.ts
+TRANSLATIONS += translations/Kraken-nl_NL.ts

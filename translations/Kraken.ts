@@ -2,50 +2,92 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>CoverPage</name>
+    <name>Balance</name>
     <message>
-        <source>My Cover</source>
+        <source>Needs login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Balance</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>FirstPage</name>
+    <name>Credentials</name>
     <message>
-        <source>Show Page 2</source>
+        <source>Credentials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>UI Template</source>
+        <source>API key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Hello Sailors</source>
+        <source>Enter API key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>API secret</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save credentials</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter API secret</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Home</name>
     <message>
-        <source>Select USD</source>
+        <source>Update credentials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select EUR</source>
+        <source>Add credentials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Refresh now</source>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Market</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Balance</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>SecondPage</name>
+    <name>Market</name>
     <message>
-        <source>Nested Page</source>
+        <source>Currency</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PairDetails</name>
+    <message>
+        <source>Refresh now</source>
+        <translation>Refresh now</translation>
+    </message>
+</context>
+<context>
+    <name>PairLabel</name>
+    <message>
+        <source>Day high</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Item</source>
+        <source>Day low</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

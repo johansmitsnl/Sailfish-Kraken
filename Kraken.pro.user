@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.9.1, 2019-12-26T12:54:14. -->
+<!-- Written by QtCreator 4.9.1, 2020-01-05T18:10:20. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -395,12 +395,14 @@
      <value type="int">14</value>
     </valuelist>
     <value type="QString" key="MerRunConfiguration.QmlLiveBenchWorkspace">/home/johan/sources/sailfish/kraken/Kraken</value>
-    <value type="bool" key="MerRunConfiguration.QmlLiveEnabled">false</value>
+    <value type="bool" key="MerRunConfiguration.QmlLiveEnabled">true</value>
     <value type="int" key="MerRunConfiguration.QmlLiveIpcPort">-1</value>
     <value type="int" key="MerRunConfiguration.QmlLiveOptions">3</value>
     <value type="QString" key="MerRunConfiguration.QmlLiveTargetWorkspace"></value>
     <value type="int" key="PE.EnvironmentAspect.Base">1</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes">
+     <value type="QString">LANG=nl_NL</value>
+    </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Kraken (on Sailfish OS Emulator 3.2.0.12)</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.MerRunConfiguration:/home/johan/sources/sailfish/kraken/Kraken/Kraken.pro</value>
