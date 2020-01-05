@@ -152,12 +152,12 @@ Page {
         // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
         PullDownMenu {
             MenuItem {
-                text: functions.apiKeyPresent() ? qsTr("update-login") : qsTr("login")
+                text: functions.apiKeyPresent() ? qsTr("Update credentials") : qsTr("Add credentials")
                 onClicked: pageStack.push(Qt.resolvedUrl("Credentials.qml"))
             }
 
             MenuItem {
-                text: qsTr("refresh-now")
+                text: qsTr("Refresh")
                 onClicked: refreshData()
             }
         }
@@ -176,7 +176,7 @@ Page {
 
             header: TabButtonRow {
                 Repeater {
-                    model: [qsTrId("market"), qsTrId("balance")]
+                    model: [qsTr("Market"), qsTr("Balance")]
 
                     TabButton {
                         onClicked: changeTab(model.index)

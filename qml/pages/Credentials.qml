@@ -26,18 +26,18 @@ Page {
             width: parent.width
 
             PageHeader {
-                title: qsTrId("credentials")
+                title: qsTr("Credentials")
             }
 
             SectionHeader {
-                text: qsTrId('api-key')
+                text: qsTr('API key')
             }
 
             TextField {
                 id: apiKeyInput
 
                 inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
-                placeholderText: qsTrId("enter-api-key")
+                placeholderText: qsTr("Enter API key")
                 text: settings.apiKey
                 width: parent.width
 
@@ -45,7 +45,7 @@ Page {
             }
 
             SectionHeader {
-                text: qsTrId('api-secret')
+                text: qsTr('API secret')
             }
 
             PasswordField {
@@ -53,7 +53,7 @@ Page {
 
                 echoMode: TextInput.Password
                 inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
-                placeholderText: qsTrId("enter-api-secret")
+                placeholderText: qsTr("Enter API secret")
                 text: settings.apiSecret
                 width: parent.width
 
@@ -62,7 +62,7 @@ Page {
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTrId("save-credentials")
+                text: qsTr("Save credentials")
                 onClicked: saveCredentials()
              }
         }

@@ -4,6 +4,9 @@
 
 #include <sailfishapp.h>
 
+#include <QTranslator>
+#include <QtDebug>
+
 int main(int argc, char *argv[])
 {
     // SailfishApp::main() will display "qml/Kraken.qml", if you need more
@@ -16,5 +19,17 @@ int main(int argc, char *argv[])
     //
     // To display the view, call "show()" (will show fullscreen on device).
 
-    return SailfishApp::main(argc, argv);
+
+    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
+
+    QTranslator *appTranslator = new QTranslator;
+    appTranslator->load("Kraken-" + QLocale::system().name(), SailfishApp::pathTo("translations").path());
+    qDebug("Locale is: %s", QLocale::system().name().toLatin1().constData());
+    app->installTranslator(appTranslator);
+
+    QScopedPointer<QQuickView> view(SailfishApp::createView());
+    view->setSource(SailfishApp::pathTo("qml/Kraken.qml"));
+    view->setTitle("Kraken");
+    view->showFullScreen();
+    return app->exec();
 }

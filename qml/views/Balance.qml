@@ -26,12 +26,12 @@ SilicaFlickable {
         width: parent.width
 
         PageHeader {
-            title: qsTr("needs-login")
+            title: qsTr("Needs login")
         }
 
         Button {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTrId("login")
+            text: qsTr("Login")
             onClicked: pageStack.push(Qt.resolvedUrl("../pages/Credentials.qml"))
          }
     }
@@ -45,7 +45,7 @@ SilicaFlickable {
 
         PageHeader {
             id: currencyHeader
-            title: qsTrId("balance") + " (" + settings.currency + ")"
+            title: qsTr("Balance") + " (" + settings.currency + ")"
         }
 
         PageHeader {

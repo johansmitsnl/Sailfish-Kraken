@@ -13,7 +13,7 @@ SilicaListView {
 
     header: ComboBox {
         width: parent.width
-        label: "Currenty"
+        label: qsTr("Currency")
         property var menuOptions: ["EUR", "USD"]
 
         currentIndex: menuOptions.indexOf(settings.currency)

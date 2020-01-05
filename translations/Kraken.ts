@@ -2,63 +2,74 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name></name>
-    <message id="market">
-        <source></source>
+    <name>Balance</name>
+    <message>
+        <source>Needs login</source>
         <translation type="unfinished"></translation>
     </message>
-    <message id="balance">
-        <source></source>
+    <message>
+        <source>Login</source>
         <translation type="unfinished"></translation>
     </message>
-    <message id="login">
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="credentials">
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="api-key">
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="enter-api-key">
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="api-secret">
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="enter-api-secret">
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="save-credentials">
-        <source></source>
+    <message>
+        <source>Balance</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>Balance</name>
+    <name>Credentials</name>
     <message>
-        <source>needs-login</source>
+        <source>Credentials</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>API key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter API key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>API secret</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save credentials</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter API secret</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Home</name>
     <message>
-        <source>update-login</source>
+        <source>Update credentials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>login</source>
+        <source>Add credentials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>refresh-now</source>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Market</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Balance</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Market</name>
+    <message>
+        <source>Currency</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -66,17 +77,17 @@
     <name>PairDetails</name>
     <message>
         <source>Refresh now</source>
-        <translation type="unfinished"></translation>
+        <translation>Refresh now</translation>
     </message>
 </context>
 <context>
     <name>PairLabel</name>
     <message>
-        <source>ticker-day-high</source>
+        <source>Day high</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>ticker-day-low</source>
+        <source>Day low</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

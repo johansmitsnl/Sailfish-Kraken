@@ -78,7 +78,7 @@ Item {
             spacing: Theme.horizontalPageMargin
 
             Text {
-                text: qsTr("ticker-day-high") + ": " + functions.formatPrice(
+                text: qsTr("Day high") + ": " + functions.formatPrice(
                           pair.ticker.high)
                 color: Theme.primaryColor
                 font.pixelSize: Theme.fontSizeExtraSmall
@@ -89,7 +89,7 @@ Item {
             spacing: Theme.horizontalPageMargin
 
             Text {
-                text: qsTr("ticker-day-low") + ": " + functions.formatPrice(
+                text: qsTr("Day low") + ": " + functions.formatPrice(
                           pair.ticker.low)
                 color: Theme.primaryColor
                 font.pixelSize: Theme.fontSizeExtraSmall
