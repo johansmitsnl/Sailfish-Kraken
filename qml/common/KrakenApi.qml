@@ -13,7 +13,7 @@ Item {
         Component.onCompleted: {
             addImportPath(Qt.resolvedUrl('.'));
 
-            addImportPath('/usr/share/Kraken/lib/python');
+            addImportPath('/usr/share/harbour-kraken/lib/python');
             importModule('KrakenApi', moduleLoadedSetKeys);
 
         }

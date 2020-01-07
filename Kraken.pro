@@ -10,19 +10,22 @@
 #   - translation filenames have to be changed
 
 # The name of your application
-TARGET = Kraken
+TARGET = harbour-kraken
 
 CONFIG += sailfishapp
 
-SOURCES += src/Kraken.cpp
+SOURCES += \
+  src/harbour-kraken.cpp
 
 HEADERS +=
 
-DISTFILES += qml/Kraken.qml \
+DISTFILES += \
+    harbour-kraken.desktop \
     qml/common/Functions.qml \
     lib/python/* \
     qml/common/KrakenApi.qml \
     qml/cover/CoverPage.qml \
+    qml/harbour-kraken.qml \
     qml/views/Balance.qml \
     qml/pages/Credentials.qml \
     qml/pages/Home.qml \
@@ -30,12 +33,11 @@ DISTFILES += qml/Kraken.qml \
     qml/pages/PairDetails.qml \
     qml/views/OrderbookRow.qml \
     qml/views/PairLabel.qml \
-    rpm/Kraken.changes.in \
-    rpm/Kraken.changes.run.in \
-    rpm/Kraken.spec \
-    rpm/Kraken.yaml \
-    translations/*.ts \
-    Kraken.desktop
+    rpm/harbour-kraken.spec \
+    rpm/harbour-kraken.changes.in \
+    rpm/harbour-kraken.changes.run.in \
+    rpm/harbour-kraken.yaml \
+    translations/*.ts
 
 lib_files.files = lib
 lib_files.path = /usr/share/$$TARGET
@@ -52,4 +54,4 @@ CONFIG += sailfishapp_i18n
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/Kraken-nl_NL.ts
+TRANSLATIONS += translations/harbour-kraken-nl_NL.ts

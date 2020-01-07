@@ -1,4 +1,4 @@
-Name: Kraken
+Name: harbour-kraken
 Summary: This is a simple client for the Kraken Exchange.
 Version: 0.0.1
 Release: 1
@@ -39,7 +39,6 @@ PkgBR:
 Requires:
   - sailfishsilica-qt5 >= 0.10.9 
   - pyotherside-qml-plugin-python3-qt5
-  - libsailfishapp-launcher
 
 # All installed files
 Files:
