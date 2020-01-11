@@ -39,10 +39,6 @@ Item {
     }
 
     // Elements
-    Functions {
-        id: functions
-    }
-
     Column {
 
         Row {

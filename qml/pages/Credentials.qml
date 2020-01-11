@@ -13,9 +13,6 @@ Page {
     }
 
     // Elements
-    Settings {
-        id: settings
-    }
 
     SilicaFlickable {
         anchors.fill: parent

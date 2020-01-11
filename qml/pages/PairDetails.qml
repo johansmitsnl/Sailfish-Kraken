@@ -53,17 +53,6 @@ Page {
     }
 
     // Elements
-    Functions {
-        id: functions
-    }
-
-    KrakenApi {
-        id: krakenApi
-    }
-
-    Settings {
-        id: settings
-    }
 
     BusyIndicator {
         size: BusyIndicatorSize.Large

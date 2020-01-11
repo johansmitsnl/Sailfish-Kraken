@@ -9,7 +9,7 @@ CoverBackground {
     property string _elapsedText
 
     function refreshElapsed() {
-        _elapsedText = Format.formatDate(home.updatedAt, Formatter.DurationElapsed)
+        _elapsedText = Format.formatDate(application.updatedAt, Formatter.DurationElapsed)
     }
 
     Timer {
@@ -26,7 +26,7 @@ CoverBackground {
     BusyIndicator {
         size: BusyIndicatorSize.Large
         anchors.centerIn: parent
-        running: home.loading
+        running: application.loading
     }
 
     Column {
@@ -44,16 +44,16 @@ CoverBackground {
             color: Theme.highlightColor
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             text: _elapsedText
-            visible: !home.loading
+            visible: !application.loading
         }
 
         Label {
             id: labelTotalBalance
             anchors.horizontalCenter: parent.horizontalCenter
             color: Theme.primaryColor
-            text: functions.formatPrice(home.totalBalance)
+            text: functions.formatPrice(application.totalBalance)
             font.pixelSize: Theme.fontSizeLarge
-            visible: !home.loading
+            visible: !application.loading
             topPadding: 50 * Theme.pixelRatio
         }
     }
@@ -64,15 +64,10 @@ CoverBackground {
         CoverAction {
             iconSource: "image://theme/icon-cover-refresh"
             onTriggered: {
-                home.refreshData()
+                application.refreshData()
                 refreshElapsed()
             }
         }
-    }
-
-    Home {
-        id: home
-        visible: false
     }
 
     Functions {

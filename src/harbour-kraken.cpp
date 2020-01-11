@@ -23,12 +23,12 @@ int main(int argc, char *argv[])
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
 
     QTranslator *appTranslator = new QTranslator;
-    appTranslator->load("Kraken-" + QLocale::system().name(), SailfishApp::pathTo("translations").path());
+    appTranslator->load("harbour-kraken-" + QLocale::system().name(), SailfishApp::pathTo("translations").path());
     qDebug("Locale is: %s", QLocale::system().name().toLatin1().constData());
     app->installTranslator(appTranslator);
 
     QScopedPointer<QQuickView> view(SailfishApp::createView());
-    view->setSource(SailfishApp::pathTo("qml/Kraken.qml"));
+    view->setSource(SailfishApp::pathTo("qml/harbour-kraken.qml"));
     view->setTitle("Kraken");
     view->showFullScreen();
     return app->exec();
