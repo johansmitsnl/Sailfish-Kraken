@@ -3,12 +3,11 @@ import Sailfish.Silica 1.0
 
 import "../common"
 
-SilicaFlickable {
+Item {
 
     // Element values
-    anchors.fill: parent
-    contentHeight: loginColumn.height + mainColumn.height
-
+    height: parent.height
+    width: parent.width
 
     // Elements
     Functions {
@@ -23,7 +22,6 @@ SilicaFlickable {
     Column {
         visible: !functions.apiKeyPresent()
         id: loginColumn
-        width: parent.width
 
         PageHeader {
             title: qsTr("Needs login")
@@ -41,7 +39,6 @@ SilicaFlickable {
         visible: functions.apiKeyPresent()
         id: mainColumn
         width: parent.width
-        height: Screen.height
 
         PageHeader {
             id: currencyHeader

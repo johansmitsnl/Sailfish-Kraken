@@ -4,17 +4,17 @@
 <context>
     <name>Balance</name>
     <message>
-        <location filename="../qml/views/Balance.qml" line="29"/>
+        <location filename="../qml/views/Balance.qml" line="27"/>
         <source>Needs login</source>
         <translation>Behoeft inlog</translation>
     </message>
     <message>
-        <location filename="../qml/views/Balance.qml" line="34"/>
+        <location filename="../qml/views/Balance.qml" line="32"/>
         <source>Login</source>
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="../qml/views/Balance.qml" line="48"/>
+        <location filename="../qml/views/Balance.qml" line="45"/>
         <source>Balance</source>
         <translation>Balans</translation>
     </message>
@@ -55,17 +55,17 @@
 <context>
     <name>Home</name>
     <message>
-        <location filename="../qml/pages/Home.qml" line="155"/>
+        <location filename="../qml/pages/Home.qml" line="153"/>
         <source>Update credentials</source>
         <translation>Credentials</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Home.qml" line="155"/>
+        <location filename="../qml/pages/Home.qml" line="153"/>
         <source>Add credentials</source>
         <translation>Credentials toevoegen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Home.qml" line="160"/>
+        <location filename="../qml/pages/Home.qml" line="158"/>
         <source>Refresh</source>
         <translation>Bijwerken</translation>
     </message>
@@ -75,7 +75,7 @@
         <translation>Markt</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Home.qml" line="179"/>
+        <location filename="../qml/pages/Home.qml" line="184"/>
         <source>Balance</source>
         <translation>Balans</translation>
     </message>
@@ -83,7 +83,7 @@
 <context>
     <name>Market</name>
     <message>
-        <location filename="../qml/views/Market.qml" line="16"/>
+        <location filename="../qml/views/Market.qml" line="22"/>
         <source>Currency</source>
         <translation>Valuta</translation>
     </message>

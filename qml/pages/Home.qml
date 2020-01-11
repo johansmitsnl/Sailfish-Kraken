@@ -1,6 +1,5 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
-import Sailfish.Silica.private 1.0
 import "../common"
 import "../views"
 
@@ -21,7 +20,6 @@ Page {
     // Functions
     function changeTab(index) {
         settings.homeTab = index
-        tabs.moveTo(index)
     }
 
     function refreshData() {
@@ -168,38 +166,43 @@ Page {
             running: loading
         }
 
-        TabView {
+        Column {
+            anchors.horizontalCenter: parent.horizontalCenter
             id: tabs
+            y: Theme.paddingLarge
 
-            anchors.fill: parent
-            currentIndex: settings.homeTab
 
-            header: TabButtonRow {
-                Repeater {
-                    model: [qsTr("Market"), qsTr("Balance")]
+            Row {
+                spacing: Theme.horizontalPageMargin
 
-                    TabButton {
-                        onClicked: changeTab(model.index)
-
-                        title: modelData
-                        tabIndex: model.index
-                    }
+                Button {
+                    text: qsTr("Market")
+                    onClicked: changeTab('market')
+                    down: settings.homeTab === 'market'
                 }
-            }
-
-            model: [marketComponent, balanceComponent]
-            Component {
-                id: marketComponent
-                Market {
-                    id: marketView
-                }
-            }
-            Component {
-                id: balanceComponent
-                Balance {
-                    id: balanceView
+                Button {
+                    text: qsTr("Balance")
+                    onClicked: changeTab('balance')
+                    down: settings.homeTab === 'balance'
                 }
             }
         }
+
+        Market {
+            id: market
+            anchors.top: tabs.bottom
+            anchors.topMargin: Theme.paddingLarge
+            visible: settings.homeTab === 'market'
+            clip: true
+        }
+
+        Balance {
+            id: balance
+            anchors.top: tabs.bottom
+            anchors.topMargin: Theme.paddingLarge
+            visible: settings.homeTab === 'balance'
+            clip: true
+        }
+
     }
 }

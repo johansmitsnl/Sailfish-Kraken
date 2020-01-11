@@ -5,12 +5,11 @@ ConfigurationGroup {
 
     // Properties
     property string currency: "USD"
-    property var homeTab: 0
+    property var homeTab: 'market'
     property string apiKey: ""
     property string apiSecret: ""
 
     // Element values
     id: configuration
     path: "/apps/kraken"
-    synchronous: true
 }
