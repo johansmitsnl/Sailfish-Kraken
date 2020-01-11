@@ -10,13 +10,6 @@ Item {
     width: parent.width
 
     // Elements
-    Functions {
-        id: functions
-    }
-
-    Settings {
-        id: settings
-    }
 
     // When no credentials are set show that they are needed
     Column {

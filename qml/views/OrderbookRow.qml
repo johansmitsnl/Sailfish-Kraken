@@ -12,10 +12,6 @@ Item {
     x: Theme.horizontalPageMargin
 
     // Elements
-    Functions {
-        id: functions
-    }
-
     Column {
         width: parent.width
 
