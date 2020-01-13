@@ -123,8 +123,9 @@ ApplicationWindow {
             if(balance[assetPrairs[idx].name]) {
                 //console.debug("Amount of key", assetPrairs[idx].key, parseFloat(balance[assetPrairs[idx].name]))
                 var bal = parseFloat(balance[assetPrairs[idx].name])
-                if(bal > 0) {
-                    var assetTotal = bal * assetPrairs[idx].ticker.current
+                // Only list values that are more then 5 digets
+                var assetTotal = bal * assetPrairs[idx].ticker.current
+                if(assetTotal > 0 && parseFloat(assetTotal.toFixed(5))) {
                     newTotalBalance += assetTotal
                     newAssetsBalance.push({
                                               name: assetPrairs[idx].name,
