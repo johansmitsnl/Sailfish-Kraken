@@ -9,7 +9,7 @@ Name:       harbour-kraken
 # << macros
 
 Summary:    This is a simple client for the Kraken Exchange.
-Version:    0.0.2
+Version:    0.0.3
 Release:    1
 Group:      Qt/Qt
 License:    GNU General Public License v3.0
@@ -68,7 +68,6 @@ desktop-file-install --delete-original       \
 %defattr(-,root,root,-)
 %{_bindir}
 %{_datadir}/%{name}
-%{_datadir}/%{name}/lib
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 # >> files

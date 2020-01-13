@@ -32,6 +32,7 @@ Item {
         visible: functions.apiKeyPresent()
         id: mainColumn
         width: parent.width
+        height: parent.height
 
         PageHeader {
             id: currencyHeader
@@ -51,10 +52,10 @@ Item {
 
             // Element values
             id: assetsListView
-            height: parent.height
             anchors.top: totalBalanceHeader.bottom
             anchors.topMargin: 5
             width: parent.width
+            height: parent.height
 
             model: assetsBalance
             visible: assetsBalance.length !== 0
@@ -62,13 +63,13 @@ Item {
 
             delegate: BackgroundItem {
                 id: delegate
+                implicitHeight: pairLabel.height + Theme.paddingLarge
 
                 Column {
                     id: pairLabel
 
                     Row {
                         spacing: Theme.horizontalPageMargin
-
 
                         Text {
                             text: functions.formatPrice(assetsBalance[index].total)

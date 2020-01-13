@@ -1,6 +1,6 @@
 Name: harbour-kraken
 Summary: This is a simple client for the Kraken Exchange.
-Version: 0.0.2
+Version: 0.0.3
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS
@@ -44,7 +44,6 @@ Requires:
 Files:
   - '%{_bindir}'
   - '%{_datadir}/%{name}'
-  - '%{_datadir}/%{name}/lib'
   - '%{_datadir}/applications/%{name}.desktop'
   - '%{_datadir}/icons/hicolor/*/apps/%{name}.png'
 
