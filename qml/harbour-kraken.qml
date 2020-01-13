@@ -82,6 +82,21 @@ ApplicationWindow {
                         tickerData[results[idx].key].l[1])
         }
 
+        results.push({
+                         "key": "Z" + settings.currency,
+                         "name": "Z" + settings.currency,
+                         "quote": 1,
+                         "ticker": {
+                             "opening": 1,
+                             "low": 1,
+                             "high": 1,
+                             "ask": 1,
+                             "bid": 1,
+                             "current": 1,
+                             "last24": 1
+                         }
+                     })
+
         // Save the results in the state
         assetPrairs = results
         updatedAt = new Date()
