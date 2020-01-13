@@ -14,7 +14,7 @@
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="../qml/views/Balance.qml" line="38"/>
+        <location filename="../qml/views/Balance.qml" line="39"/>
         <source>Balance</source>
         <translation>Balans</translation>
     </message>
