@@ -54,4 +54,5 @@ CONFIG += sailfishapp_i18n
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/harbour-kraken-nl_NL.ts
+TRANSLATIONS += translations/harbour-kraken-nl_NL.ts \
+    translations/harbour-kraken-zh_CN.ts
