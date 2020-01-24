@@ -107,8 +107,12 @@ ApplicationWindow {
 
 
     function refreshBalanceData() {
-        console.debug("Refresh the balance data")
+        if(functions.apiKeyPresent()) {
+            console.debug("Refresh the balance data")
         krakenApi.queryPrivate(['Balance'], callbackBalanceData)
+        } else {
+            console.debug("No apiKey present. Skip balance refresh.")
+        }
     }
 
     function callbackBalanceData(data) {
