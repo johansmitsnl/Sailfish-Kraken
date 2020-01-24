@@ -30,12 +30,12 @@ Item {
     }
 
     function priceChange() {
-        return (currentPrice() - ticker().low24)
+        return (currentPrice() - ticker().opening)
     }
 
     function percentageNow() {
-        return ((currentPrice() - ticker().low24) / ticker(
-                    ).low24 * 100).toFixed(2)
+        return (priceChange() / ticker(
+                    ).opening * 100).toFixed(2)
     }
 
     // Elements
