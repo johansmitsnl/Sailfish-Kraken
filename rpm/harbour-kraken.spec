@@ -9,7 +9,7 @@ Name:       harbour-kraken
 # << macros
 
 Summary:    This is a simple client for the Kraken Exchange.
-Version:    0.0.5
+Version:    0.1.0
 Release:    1
 Group:      Qt/Qt
 License:    GNU General Public License v3.0
